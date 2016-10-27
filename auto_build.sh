@@ -30,7 +30,7 @@ breakfast $device_name
 brunch $device_name
 cd out/target/product/$device_name/
 cp -a *.zip '/media/shivam/SHIVAM/ANDROID/ROMS & MODS/MI4/My Builds/N'
-rm -rf system/ *.img *.md5sum *.txt *.mk kernel ota* ramdisk-recovery.cpio recovery.id *.zip
+rm -rf system/ *.img *.md5sum *.txt *.mk ota* ramdisk-recovery.cpio recovery.id 
 }
 
 cd ~/Android/aicp-n/
