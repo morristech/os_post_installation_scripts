@@ -3,6 +3,7 @@
 yellow='\033[0;33m'
 
 echo -e "$yellow Adding Repositories"
+add-apt-repository -y ppa:plushuang-tw/uget-stable
 add-apt-repository -y ppa:webupd8team/pulseaudio-eq
 add-apt-repository -y ppa:nilarimogard/webupd8
 add-apt-repository -y ppa:videolan/stable-daily
@@ -20,6 +21,8 @@ sh -c "echo 'deb http://download.opensuse.org/repositories/home:/Horst3180/xUbun
 apt-get update -y 
 
 echo -e "$yellow Installing applications..."
+apt-get install -y --allow-unauthenticated uget
+apt-get install -y --allow-unauthenticated mousepad
 apt-get install -y --allow-unauthenticated libhal1-flash
 apt-get install -y --allow-unauthenticated arc-theme
 apt-get install -y --allow-unauthenticated unity-tweak-tool
@@ -115,18 +118,6 @@ apt-get install -y --allow-unauthenticated openjdk-8-jdk
 echo -e "$yellow Installing Apps which may require user attention..."
 apt-get install -y --allow-unauthenticated ubuntu-restricted-extras
 
-echo -e "$yellow Pulse Audio Installation..."
-wget http://cgit.freedesktop.org/pulseaudio/pulseaudio/plain/src/utils/qpaeq -O /tmp/qpaeq
-sudo install /tmp/qpaeq /usr/local/bin/
-apt-get install -y --allow-unauthenticated python-dbus python-qt4 python-qt4-dbus pulseaudio-utils
-apt-get install -y --allow-unauthenticated pulseaudio-equalizer
-pulseaudio -k
-pactl load-module module-equalizer-sink
-pactl load-module module-dbus-protocol
-rm -rf ~/.config/pulse
-rm -rf ~/.pulse
-apt-get install -y --allow-unauthenticated pulseaudio pavucontrol
-
 echo -e "$yellow Set menu to always show..."
 gsettings set com.canonical.Unity always-show-menus true
 
@@ -149,3 +140,16 @@ apt-get -y --allow-unauthenticated clean
 apt-get update -y --allow-unauthenticated 
 
 exit
+
+echo -e "$yellow Pulse Audio Installation..."
+wget http://cgit.freedesktop.org/pulseaudio/pulseaudio/plain/src/utils/qpaeq -O /tmp/qpaeq
+sudo install /tmp/qpaeq /usr/local/bin/
+apt-get install -y --allow-unauthenticated python-dbus python-qt4 python-qt4-dbus pulseaudio-utils
+apt-get install -y --allow-unauthenticated pulseaudio-equalizer
+pulseaudio -k
+pactl load-module module-equalizer-sink
+pactl load-module module-dbus-protocol
+rm -rf ~/.config/pulse
+rm -rf ~/.pulse
+
+apt-get install -y --allow-unauthenticated pulseaudio pavucontrol
