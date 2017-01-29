@@ -53,67 +53,23 @@ apt-get install -y --allow-unauthenticated gparted
 apt-get install -y --allow-unauthenticated udisks
 apt-get install -y --allow-unauthenticated simplescreenrecorder
 
+echo -e "$yellow Pulse Audio Installation..."
+wget http://cgit.freedesktop.org/pulseaudio/pulseaudio/plain/src/utils/qpaeq -O /tmp/qpaeq
+sudo install /tmp/qpaeq /usr/local/bin/
+apt-get install -y --allow-unauthenticated python-dbus python-qt4 python-qt4-dbus pulseaudio-utils
+apt-get install -y --allow-unauthenticated pulseaudio-equalizer pulseaudio pavucontrol
+pulseaudio -k
+pactl load-module module-equalizer-sink
+pactl load-module module-dbus-protocol
+rm -rf ~/.config/pulse
+rm -rf ~/.pulse
+
 echo -e "$yellow Setting up Android Build Environment..."
+apt-get install -y --allow-unauthenticated bc bison build-essential curl flex g++-multilib gcc-multilib git gnupg gperf imagemagick lib32ncurses5-dev lib32readline6-dev lib32z1-dev libesd0-dev liblz4-tool libncurses5-dev libsdl1.2-dev libwxgtk3.0-dev libxml2 libxml2-utils lzop pngcrush schedtool squashfs-tools xsltproc zip zlib1g-dev
+apt-get install -y --allow-unauthenticated openjdk-8-jdk
 mkdir -p ~/bin
 curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
 chmod a+x ~/bin/repo
-apt-get install -y --allow-unauthenticated phablet-tools
-apt-get install -y --allow-unauthenticated repo
-apt-get install -y --allow-unauthenticated maven
-apt-get install -y --allow-unauthenticated libcap-dev texinfo
-apt-get install -y --allow-unauthenticated python-pip
-pip install backports.ssl_match_hostname
-apt-get install -y --allow-unauthenticated liblzma-dev
-apt-get install -y --allow-unauthenticated libpython2.7-dev python-numpy
-apt-get install -y --allow-unauthenticated git 
-apt-get install -y --allow-unauthenticated git-review
-apt-get install -y --allow-unauthenticated android-tools-adb android-tools-fastboot
-apt-get install -y --allow-unauthenticated bison 
-apt-get install -y --allow-unauthenticated build-essential 
-apt-get install -y --allow-unauthenticated curl 
-apt-get install -y --allow-unauthenticated flex 
-apt-get install -y --allow-unauthenticated pngquant
-apt-get install -y --allow-unauthenticated gnupg 
-apt-get install -y --allow-unauthenticated gperf 
-apt-get install -y --allow-unauthenticated libesd0-dev 
-apt-get install -y --allow-unauthenticated liblz4-tool 
-apt-get install -y --allow-unauthenticated libncurses5-dev 
-apt-get install -y --allow-unauthenticated libsdl1.2-dev 
-apt-get install -y --allow-unauthenticated libwxgtk2.8-dev 
-apt-get install -y --allow-unauthenticated libxml2 
-apt-get install -y --allow-unauthenticated libxml2-utils 
-apt-get install -y --allow-unauthenticated lzop 
-apt-get install -y --allow-unauthenticated pngcrush 
-apt-get install -y --allow-unauthenticated schedtool 
-apt-get install -y --allow-unauthenticated squashfs-tools 
-apt-get install -y --allow-unauthenticated xsltproc 
-apt-get install -y --allow-unauthenticated zip 
-apt-get install -y --allow-unauthenticated zlib1g-dev
-apt-get install -y --allow-unauthenticated g++-multilib 
-apt-get install -y --allow-unauthenticated gcc-multilib 
-apt-get install -y --allow-unauthenticated lib32ncurses5-dev 
-apt-get install -y --allow-unauthenticated lib32readline-gplv2-dev 
-apt-get install -y --allow-unauthenticated lib32z1-dev
-apt-get install -y --allow-unauthenticated openjdk-7-jdk
-apt-get install -y --allow-unauthenticated bison g++-multilib git gperf libxml2-utils make python-networkx zlib1g-dev:i386 zip
-sudo apt-get install -y --allow-unauthenticated git-core gnupg flex bison gperf build-essential \
-  zip curl zlib1g-dev gcc-multilib g++-multilib libc6-dev-i386 \
-  lib32ncurses5-dev x11proto-core-dev libx11-dev lib32z-dev ccache \
-  libgl1-mesa-dev libxml2-utils xsltproc unzip
-apt-get install -y --allow-unauthenticated git gnupg flex bison gperf build-essential \
-  zip curl libc6-dev libncurses5-dev:i386 x11proto-core-dev \
-  libx11-dev:i386 libreadline6-dev:i386 libgl1-mesa-glx:i386 \
-  libgl1-mesa-dev g++-multilib mingw32 tofrodos \
-  python-markdown libxml2-utils xsltproc zlib1g-dev:i386
-apt-get install -y --allow-unauthenticated git gnupg flex bison gperf build-essential \
-  zip curl zlib1g-dev libc6-dev lib32ncurses5-dev ia32-libs \
-  x11proto-core-dev libx11-dev lib32readline5-dev lib32z-dev \
-  libgl1-mesa-dev g++-multilib mingw32 tofrodos python-markdown \
-  libxml2-utils xsltproc
-apt-get update -y --allow-unauthenticated && apt-get install -y --allow-unauthenticated git-core gnupg flex bison gperf libsdl1.2-dev libesd0-dev libwxgtk2.8-dev squashfs-tools build-essential zip curl libncurses5-dev zlib1g-dev openjdk-6-jre openjdk-6-jdk pngcrush schedtool libxml2 libxml2-utils xsltproc lzop libc6-dev schedtool g++-multilib lib32z1-dev lib32ncurses5-dev lib32readline-gplv2-dev gcc-multilib
-apt-get -y --allow-unauthenticated install libfile-mimeinfo-perl gvfs-bin unzip imagemagick python-nautilus
-apt-get install -y --allow-unauthenticated git ccache automake lzop bison gperf build-essential zip curl zlib1g-dev zlib1g-dev:i386 g++-multilib python-networkx libxml2-utils bzip2 libbz2-dev libbz2-1.0 libghc-bzlib-dev squashfs-tools pngcrush schedtool dpkg-dev liblz4-tool make optipng maven
-apt-get install -y --allow-unauthenticated openjdk-8-jdk
 
 echo -e "$yellow Installing Apps which may require user attention..."
 apt-get install -y --allow-unauthenticated ubuntu-restricted-extras
@@ -137,19 +93,10 @@ apt-get -y --allow-unauthenticated autoremove
 apt-get -y --allow-unauthenticated autoclean 
 apt-get -y --allow-unauthenticated clean
 
-apt-get update -y --allow-unauthenticated 
+apt-get update -y 
 
 exit
 
-echo -e "$yellow Pulse Audio Installation..."
-wget http://cgit.freedesktop.org/pulseaudio/pulseaudio/plain/src/utils/qpaeq -O /tmp/qpaeq
-sudo install /tmp/qpaeq /usr/local/bin/
-apt-get install -y --allow-unauthenticated python-dbus python-qt4 python-qt4-dbus pulseaudio-utils
-apt-get install -y --allow-unauthenticated pulseaudio-equalizer
-pulseaudio -k
-pactl load-module module-equalizer-sink
-pactl load-module module-dbus-protocol
-rm -rf ~/.config/pulse
-rm -rf ~/.pulse
 
-apt-get install -y --allow-unauthenticated pulseaudio pavucontrol
+
+
